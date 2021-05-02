@@ -36,8 +36,10 @@ const calc = function(matl, pointPerPot_ = 750) {
 	var ans = false;
 	while (!ans) {
 		var decided = [...Array(potCnt)].map(() => JSON.parse(JSON.stringify(m)));
+		// console.log(pointPerPot, potCnt, stringifyMatl(decided));
 		ans = rec(matl, pointPerPot, potCnt, decided);
 		potCnt--;
+		memo = [];
 	}
 	console.log(sumPoint, ans.length * pointPerPot);
 	return ans;
