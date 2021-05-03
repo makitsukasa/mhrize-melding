@@ -11,6 +11,8 @@ const format = function(matl) {
 }
 
 const update = function() {
+	const pointPerPot = 750;
+	const maxPotCnt = 10;
 	const matl = [
 		{p: 100, c: elem100.value || 0},
 		{p: 80, c: elem80.value || 0},
@@ -19,9 +21,9 @@ const update = function() {
 	];
 	let sumPoint = 0;
 	for (m of matl) sumPoint += m.p * m.c;
-	const result = calc(matl, 750);
+	const result = calc(matl, pointPerPot, maxPotCnt);
 
-	elemResult.value = `${result.length} times ${(result.length * 750)}/${sumPoint}\n`;
+	elemResult.value = `${result.length} times ${(result.length * pointPerPot)}/${sumPoint}\n`;
 	elemResult.value += format(result);
 }
 

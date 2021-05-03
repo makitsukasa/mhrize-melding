@@ -24,11 +24,11 @@ const rec = function(leftMatl, leftPoint, leftPotCnt, decided) {
 	return false;
 }
 
-const calc = function(matl, pointPerPot_ = 750) {
+const calc = function(matl, pointPerPot_, maxPotCnt) {
 	pointPerPot = pointPerPot_;
 	let sumPoint = 0;
 	for (let m of matl) sumPoint += m.p * m.c;
-	let potCnt = Math.min(Math.floor(sumPoint / pointPerPot), 10);
+	let potCnt = Math.min(Math.floor(sumPoint / pointPerPot), maxPotCnt);
 	let m = JSON.parse(JSON.stringify(matl));
 	for (let i in m) m[i].c = 0;
 	let ans = false;
