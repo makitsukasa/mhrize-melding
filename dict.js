@@ -1,4 +1,6 @@
 const hashSort = function(val) {
+	// https://wordpress.ideacompo.com/?p=14965
+
 	// json化して戻すことで、元データの書き換えを防ぐ
 	var hash = JSON.parse(JSON.stringify(val));
 
