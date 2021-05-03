@@ -25,11 +25,9 @@ const rec = function(leftMatl, leftPoint, leftPotCnt, decided) {
 }
 
 const calc = function(matl, pointPerPot_ = 750) {
-	var sumPoint = 0;
 	pointPerPot = pointPerPot_;
-	for (m of matl) {
-		sumPoint += m.p * m.c;
-	}
+	var sumPoint = 0;
+	for (m of matl) sumPoint += m.p * m.c;
 	var potCnt = Math.floor(sumPoint / pointPerPot);
 	var m = JSON.parse(JSON.stringify(matl));
 	for (i in m) m[i].c = 0;
@@ -41,6 +39,6 @@ const calc = function(matl, pointPerPot_ = 750) {
 		potCnt--;
 		memo = [];
 	}
-	console.log(sumPoint, ans.length * pointPerPot);
+	console.log(ans.length * pointPerPot, sumPoint);
 	return ans;
 }
