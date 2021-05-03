@@ -6,14 +6,14 @@ const rec = function(leftMatl, leftPoint, leftPotCnt, decided) {
 	if (leftPoint == 0) return rec(leftMatl, pointPerPot, leftPotCnt - 1, decided);
 	if (hasKeyDict(memo, [leftMatl, leftPoint])) return getDict(memo, [leftMatl, leftPoint]);
 	// console.log("search", stringifyMatl(leftMatl), leftPoint, leftPotCnt, stringifyMatl(decided));
-	for (i in leftMatl) {
+	for (let i in leftMatl) {
 		if (leftMatl[i].c == 0) continue;
 		if (leftPoint - leftMatl[i].p < 0) continue;
-		var l = JSON.parse(JSON.stringify(leftMatl));
+		let l = JSON.parse(JSON.stringify(leftMatl));
 		l[i].c--;
-		var d = JSON.parse(JSON.stringify(decided));
+		let d = JSON.parse(JSON.stringify(decided));
 		d[leftPotCnt - 1][i].c++;
-		var ret = rec(l, leftPoint - l[i].p, leftPotCnt, d);
+		let ret = rec(l, leftPoint - l[i].p, leftPotCnt, d);
 		if (!ret) continue;
 		// console.log("setmem", stringifyMatl(leftMatl), leftPoint, ret);
 		setDict(memo, [leftMatl, leftPoint], ret);
@@ -26,19 +26,19 @@ const rec = function(leftMatl, leftPoint, leftPotCnt, decided) {
 
 const calc = function(matl, pointPerPot_ = 750) {
 	pointPerPot = pointPerPot_;
-	var sumPoint = 0;
-	for (m of matl) sumPoint += m.p * m.c;
-	var potCnt = Math.floor(sumPoint / pointPerPot);
-	var m = JSON.parse(JSON.stringify(matl));
-	for (i in m) m[i].c = 0;
-	var ans = false;
+	let sumPoint = 0;
+	for (let m of matl) sumPoint += m.p * m.c;
+	let potCnt = Math.floor(sumPoint / pointPerPot);
+	let m = JSON.parse(JSON.stringify(matl));
+	for (let i in m) m[i].c = 0;
+	let ans = false;
 	while (!ans) {
-		var decided = [...Array(potCnt)].map(() => JSON.parse(JSON.stringify(m)));
+		const decided = [...Array(potCnt)].map(() => JSON.parse(JSON.stringify(m)));
 		// console.log(pointPerPot, potCnt, stringifyMatl(decided));
 		ans = rec(matl, pointPerPot, potCnt, decided);
 		potCnt--;
 		memo = [];
 	}
-	console.log(ans.length * pointPerPot, sumPoint);
+	// console.log(ans.length * pointPerPot, sumPoint);
 	return ans;
 }

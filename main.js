@@ -5,7 +5,7 @@ elem65 = document.getElementById("matl65");
 elemResult = document.getElementById("result");
 
 const format = function(matl) {
-	var ret = "";
+	let ret = "";
 	for (m of matl) ret += stringifyMatl(m) + "\n";
 	return ret;
 }
@@ -17,7 +17,7 @@ const update = function() {
 		{p: 75, c: elem75.value || 0},
 		{p: 65, c: elem65.value || 0},
 	];
-	var sumPoint = 0;
+	let sumPoint = 0;
 	for (m of matl) sumPoint += m.p * m.c;
 	const result = calc(matl, 750);
 
