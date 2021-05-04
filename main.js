@@ -22,8 +22,9 @@ const update = function() {
 	let sumPoint = 0;
 	for (m of matl) sumPoint += m.p * m.c;
 	const result = calc(matl, pointPerPot, maxPotCnt);
+	const usedPoint = (result.length * pointPerPot);
 
-	elemResult.value = `${result.length} times ${(result.length * pointPerPot)}/${sumPoint}\n`;
+	elemResult.value = `${result.length} times (${sumPoint},${usedPoint},${sumPoint - usedPoint})\n`;
 	elemResult.value += format(result);
 }
 
